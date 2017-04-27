@@ -37,6 +37,7 @@ fs.readFile('stopwords.txt', 'utf8', (err, stopwords) => {
 			sentTerms.forEach((sentTerm) => {
 				if (terms.indexOf(sentTerm) > -1) {
 					weight += frequencies[sentTerm];
+					allSentTerms++;
 				}
 			});
 			weights.push(weight);
@@ -55,7 +56,7 @@ fs.readFile('stopwords.txt', 'utf8', (err, stopwords) => {
 		});
 		
 		let result = '';
-		for (let i = 0; i < 4; i++) {
+		for (let i = 0; i < 3; i++) {
 			let weight = weightSort[i];
 			//this needs to be improved too -- what if duplicate weights?
 			let index = weights.indexOf(weight);
@@ -64,15 +65,5 @@ fs.readFile('stopwords.txt', 'utf8', (err, stopwords) => {
 		}
 		
 		console.log(result);
-		//console.log(weightSort);
-		//console.log(sentenceData.data()[sentences.length - 2].text);
-		//console.log(sentences[sentences.length - 2]);
-		//console.log(weights);
-		//console.log(terms);
-		//console.log(nlp(data).terms().sort('frequency').unique().out('array'));
-		//let sentences = data.split(/[\.\?\!]/);
-		//for (let i = 0; i < sentences.length; i++) {
-			//console.log('sentence ' + i + ': ' + sentences[i]);
-		//}
 	});
 });
